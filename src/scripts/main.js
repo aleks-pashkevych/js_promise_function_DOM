@@ -2,10 +2,24 @@
 
 function waitFor(element, eventName) {
   // write your code here
+  const prom = new Promise((resolve, reject) => {
+    element.addEventListener(eventName, (e) => {
+      if (e.target === element && element.textContent.length > 0) {
+        resolve(element.textContent);
+      }
+    });
+  });
+
+  return prom;
 }
 
 const printMessage = (message) => {
   // write your code here
+  const div = document.createElement('div');
+
+  div.className.add('message');
+  div.textContent = message;
+  document.body.appendChild(div);
 };
 
 const loginField = document.getElementById('login');

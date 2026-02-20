@@ -2,12 +2,19 @@
 
 function waitFor(element, eventName) {
   // write your code here
+  function handler() {
+    return `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`;
+  }
+
   const prom = new Promise((resolve, reject) => {
     element.addEventListener(eventName, (e) => {
       if (e.target === element && element.textContent.length > 0) {
-        resolve(element.textContent);
+        resolve(handler(e));
+        removeEventListener(eventName);
       }
     });
+
+    // removeEventListener(eventName);
   });
 
   return prom;
@@ -17,7 +24,7 @@ const printMessage = (message) => {
   // write your code here
   const div = document.createElement('div');
 
-  div.className.add('message');
+  div.classList.add('message');
   div.textContent = message;
   document.body.appendChild(div);
 };

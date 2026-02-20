@@ -7,12 +7,13 @@ function waitFor(element, eventName) {
   }
 
   const prom = new Promise((resolve, reject) => {
-    element.addEventListener(eventName, (e) => {
-      if (e.target === element && element.textContent.length > 0) {
+    element.addEventListener(
+      eventName,
+      (e) => {
         resolve(handler(e));
-        removeEventListener(eventName);
-      }
-    });
+      },
+      { once: true },
+    );
 
     // removeEventListener(eventName);
   });

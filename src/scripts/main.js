@@ -3,7 +3,7 @@
 function waitFor(element, eventName) {
   // write your code here
   function handler() {
-    return `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`;
+    return `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}.`;
   }
 
   const prom = new Promise((resolve, reject) => {
